@@ -23,18 +23,41 @@ export default function RootLayout({
 }>) {
   // Disable all auto-scroll behavior when in iframe
   useEffect(() => {
-    // Disable scroll restoration
+    // Always disable scroll restoration
     if (typeof window !== 'undefined') {
       window.history.scrollRestoration = 'manual';
     }
 
     // Prevent any scroll behavior when in iframe
     if (window.self !== window.top) {
+      // Override ALL scroll methods
       const originalScrollTo = window.scrollTo;
-      window.scrollTo = () => {}; // Disable scrollTo when in iframe
+      const originalScroll = window.scroll;
+      const originalScrollBy = window.scrollBy;
+
+      window.scrollTo = () => {};
+      window.scroll = () => {};
+      window.scrollBy = () => {};
+
+      // Prevent smooth scroll CSS
+      document.documentElement.style.scrollBehavior = 'auto';
+      document.body.style.scrollBehavior = 'auto';
+
+      // Lock scroll position
+      const preventScroll = (e: Event) => {
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+      };
+
+      // Prevent scroll events from bubbling
+      window.addEventListener('scroll', preventScroll, { passive: false, capture: true });
 
       return () => {
-        window.scrollTo = originalScrollTo; // Restore on cleanup
+        window.scrollTo = originalScrollTo;
+        window.scroll = originalScroll;
+        window.scrollBy = originalScrollBy;
+        window.removeEventListener('scroll', preventScroll, true);
       };
     }
   }, []);
