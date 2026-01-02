@@ -44,7 +44,7 @@ export function ResultsDisplay({ results, answers }: ResultsDisplayProps) {
   };
 
   return (
-    <div className="w-full max-w-4xl mx-auto space-y-8 pt-5">
+    <div className="w-full max-w-4xl mx-auto space-y-8">
       {/* Page Header */}
       <div className="text-center mb-8 animate-fadeIn">
         <h1 className="text-[30px] font-semibold text-revaya-dark-gray mb-3">

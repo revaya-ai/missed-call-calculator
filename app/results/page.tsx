@@ -40,8 +40,8 @@ export default function ResultsPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center px-4 py-12 bg-white">
-        <div className="text-center">
+      <div className="px-4 pt-5 pb-12 bg-white">
+        <div className="text-center mx-auto max-w-4xl">
           <div className="w-16 h-16 border-4 border-revaya-purple border-t-transparent rounded-full animate-spin mx-auto mb-4" />
           <p className="text-xl text-revaya-medium-gray">Calculating your results...</p>
         </div>
@@ -51,8 +51,8 @@ export default function ResultsPage() {
 
   if (!resultsData) {
     return (
-      <div className="min-h-screen flex items-center justify-center px-4 py-12 bg-white">
-        <div className="text-center max-w-md">
+      <div className="px-4 pt-5 pb-12 bg-white">
+        <div className="text-center max-w-md mx-auto">
           <h1 className="text-2xl font-bold text-revaya-dark-gray mb-4">No Results Found</h1>
           <p className="text-lg text-revaya-medium-gray mb-6">
             Please complete the calculator to see your results.
@@ -69,7 +69,7 @@ export default function ResultsPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 py-12 bg-white">
+    <div className="px-4 pt-5 pb-12 bg-white">
       <ResultsDisplay results={resultsData.results} answers={resultsData.answers} />
     </div>
   );

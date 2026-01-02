@@ -240,8 +240,8 @@ export default function QuizPage() {
   const isSliderQuestion = currentQ?.type === 'slider';
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 py-12 bg-white pt-5">
-      <div className="max-w-3xl w-full">
+    <div className="px-4 pt-5 pb-12 bg-white">
+      <div className="max-w-3xl w-full mx-auto">
         {/* Progress Bar */}
         <QuizProgress
           progress={progress}
